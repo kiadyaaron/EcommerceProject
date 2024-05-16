@@ -15,11 +15,13 @@ class Cart
 
     public function add($id)
     {
-        $panier = $this->session->get('panier', []);
-        $panier[] = [
-            'id' => $id,
-            'quantity' => 1
-        ];
+        $this->session->get('cart', [
+            [
+                'id'=>$id,
+                'quantity'=>1
+            ]
+        ]);
+        
         
     }
 }
