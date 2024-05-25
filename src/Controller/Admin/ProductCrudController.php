@@ -27,13 +27,13 @@ class ProductCrudController extends AbstractCrudController
         return[
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name'),
-            ImageField::new('illustration') ->setBasePath('uploads/images') // Remplacez 'uploads/images' par le chemin réel de votre répertoire
+            ImageField::new('illustration') ->setBasePath('uploads/images') 
             ->setUploadDir('public/uploads/images')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
             ->setRequired(false),
             TextField::new('subtitle'),
             TextareaField::new('description'),
-            MoneyField::new('price')->setCurrency('EUR'),
+            MoneyField::new('price')->setCurrency('MGA'),
             AssociationField::new('category')
 
         ];

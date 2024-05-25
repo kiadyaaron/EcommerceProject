@@ -11,11 +11,11 @@ main{
   color: #fff;
 }
 .footer-custom {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   background-color: #92c4f7;
-  padding: 10px 0;
+  padding: 5px 0;
   text-align: center;
 
 }
@@ -65,3 +65,19 @@ main{
   height: 20px;
   padding-left: 20px;
 }
+
+.form-check {
+  background-color: #f4f8ff;
+  padding: 20px 65px;
+  margin-top: 7px;
+}
+
+.col-form-label{
+  font-weight: bold;   
+ }
+ 
+ .order-summury{
+     background-color: #f4f8ff;
+     padding: 20px;
+     margin-top: 22px;
+ }

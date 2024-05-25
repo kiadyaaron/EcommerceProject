@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Carrier;
 use App\Entity\Category;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -32,6 +34,7 @@ class DashboardController extends AbstractDashboardController
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
+        
         return $this->render('admin/dashboard.html.twig');
     }
 
@@ -45,7 +48,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateur', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Orders', 'fa fa-shopping-cart', Order::class);
         yield MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class);
         yield MenuItem::linkToCrud('Produits', 'fa fa-shirt', Product::class);
+        yield MenuItem::linkToCrud('Carriers', 'fa fa-truck', Carrier::class);
     }
 }
