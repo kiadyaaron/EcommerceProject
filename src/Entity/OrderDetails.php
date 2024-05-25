@@ -18,13 +18,22 @@ class OrderDetails
     private ?Order $myOrder = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Product = null;
+    private ?string $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
     #[ORM\Column]
     private ?float $price = null;
+
+    #[ORM\Column]
+    private ?float $total = null;
+
+
+    public function __toString()
+    {
+        return $this->getProduct().' x'.$this->getQuantity();
+    }
 
     public function getId(): ?int
     {
@@ -45,12 +54,12 @@ class OrderDetails
 
     public function getProduct(): ?string
     {
-        return $this->Product;
+        return $this->product;
     }
 
-    public function setProduct(string $Product): static
+    public function setProduct(string $product): static
     {
-        $this->Product = $Product;
+        $this->product = $product;
 
         return $this;
     }
@@ -75,6 +84,18 @@ class OrderDetails
     public function setPrice(float $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): static
+    {
+        $this->total = $total;
 
         return $this;
     }

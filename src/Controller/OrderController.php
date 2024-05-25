@@ -25,7 +25,7 @@ class OrderController extends AbstractController
     {
         if (!$this->getUser()->getAddresses()->getValues()) 
         {
-            return $this->redirectToRoute('app_address_add');
+            return $this->redirectToRoute('account_address_add');
         }
 
         $form = $this->createForm(OrderType::class,null,[
@@ -52,16 +52,13 @@ class OrderController extends AbstractController
             $date = new \DateTimeImmutable();
             $carriers = $form->get('carriers')->getData();
             $delivery = $form->get('addresses')->getData();
-            $delivery_content = $delivery->getFirstname().' '.$delivery->getLastname();
+            $delivery_content = $delivery->getFirstname();
             $delivery_content .= '<br>'.$delivery->getPhone();
 
-            if ($delivery->getCompany()) {
-                $delivery_content .= '<br>'.$delivery->getCompany();
-            }
-
+            
             $delivery_content .= '<br>'.$delivery->getAddress();
             $delivery_content .= '<br>'.$delivery->getPostal().' '.$delivery->getCity();
-            $delivery_content .= '<br>'.$delivery->getCountry();
+            
             
             // Enregister mes commandes Order()
             $order = new Order();
