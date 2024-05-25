@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -31,15 +30,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstname = null;
+    private ?string $Firstname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lastname = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    #[ORM\OneToMany(targetEntity: Address::class, mappedBy: 'user')]
     private Collection $addresses;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
     private Collection $orders;
 
     public function __construct()
@@ -71,19 +67,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @see UserInterface
      */
     public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
-
-    public function getFullName(): string 
-    {
-        return $this->getFirstname().' '.$this->getLastname();
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
     {
         return (string) $this->email;
     }
@@ -123,17 +106,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
      * @see UserInterface
      */
     public function eraseCredentials(): void
@@ -142,26 +114,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    
+
     public function getFirstname(): ?string
     {
-        return $this->firstname;
+        return $this->Firstname;
     }
 
-    public function setFirstname(string $firstname): static
+    public function setFirstname(string $Firstname): static
     {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): static
-    {
-        $this->lastname = $lastname;
+        $this->Firstname = $Firstname;
 
         return $this;
     }
