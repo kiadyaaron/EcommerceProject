@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}GK HAIR - PAIEMENT DE MA COMMANDE{% endblock %}
+{% block title %}Payement de ma commande - La boutique Française{% endblock %}
 
 {% block content %}
 
@@ -18,7 +18,7 @@
                 <strong>Mon transporteur</strong><br>
                 {{carrier.name}} <br>
                 {{carrier.description}} <br>
-                {{(carrier.price/100)|number_format(2,',','.') }} MGA
+                {{(carrier.price/100)|number_format(2,',','.') }} €
             </div>
         </div>
         <div class="col-md-6">
@@ -41,23 +41,24 @@
                             </small>
                         </div>
                         <div class="col-2 my-auto">
-                            {{((product.product.price*product.quantity)/100)|number_format(2,',','.')}} MGA
+                            {{((product.product.price*product.quantity)/100)|number_format(2,',','.')}} €
                         </div>
                     </div>
                     {% set total = total + (product.product.price * product.quantity) %}
                 {% endfor %}
             </div>
             <hr>
-            <strong>Sous-total</strong> : {{(total/100)|number_format(2,',','.')}} MGA<br>
-            <strong>Livraison</strong> : {{(carrier.price/100)|number_format(2,',','.')}} MGA
+            <strong>Sous-total</strong> : {{(total/100)|number_format(2,',','.')}} €<br>
+            <strong>Livraison</strong> : {{(carrier.price/100)|number_format(2,',','.')}} €
             <hr>
-            <strong>Total : </strong> {{((total/100) +(carrier.price/100))|number_format(2,',','.')}} MGA
+            <strong>Total : </strong> {{((total/100) +(carrier.price/100))|number_format(2,',','.')}} €
             <input type="hidden" id="ref_com" value="{{reference}}">
-            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{((total/100) +(carrier.price/100))|number_format(2,',','.')}} MGA</a>
+            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{((total/100) +(carrier.price/100))|number_format(2,',','.')}} €</a>
         </div>
     </div>
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
-        var stripe = Stripe("pk_test_51OIGIYK7EWxoZpX7D0Ef77haarCR8oR5rIPeapLnLihSwAMDYOktSDfs05WHiQpV1nb8Zo5DjjQ58v8fkFZfUWcn00oIgYZWsB");
+        var stripe = Stripe("pk_test_51PKaum00oR3Ppa2ItUMPnrvO1katTmvYGMB3bWaPtT2z1VnumfDhDcTTMeCWseRsV8l2vLSdxzEsVQzYAhF1hhUP00ETezqvNA");
     
         // Utilisez la méthode redirectToCheckout pour créer et rediriger vers la session de paiement
         var checkoutButton = document.getElementById('checkout-button');

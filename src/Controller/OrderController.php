@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Stripe;
 
 class OrderController extends AbstractController
 {
@@ -86,6 +87,8 @@ class OrderController extends AbstractController
 
             //dd($order);
             $this->entityManager->flush();
+
+           
 
             return $this->render('order/add.html.twig',[
                 'cart' => $cart->getFull(),
